@@ -1,3 +1,14 @@
+/*
+Author: Anton Goretsky
+Course: CSCI-133
+Instructor: Professor Zamansky
+Assignment: Lab2C
+
+Prints array of 10 elements.
+User can input index and value to change element.
+If index is out of bounds, program ends.
+*/
+
 #include <iostream>
 #include <string>
 
