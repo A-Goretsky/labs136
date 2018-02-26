@@ -7,6 +7,6 @@
 
   TEST_CASE("Testing Anton's code for the first task")
   {
-    CHECK(east_storage("12/12/2016")==49.34);
-    CHECK(east_storage("02/15/2018")==81);
+    CHECK(east_storage("12/12/2016")==51.98);
+    CHECK(east_storage("02/15/2016")==74.91);
   }
