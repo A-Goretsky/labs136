@@ -1,7 +1,8 @@
 #include <iostream>
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "ashokan.h"
-#include "doctest.h"
+
+#include "../doctest/doctest/doctest.h"
 
 
   TEST_CASE("Testing Anton's code for the first task")

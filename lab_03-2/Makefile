@@ -1,13 +1,15 @@
-ashokan: ashokan.cpp ashokan.h Current_Reservoir_Levels.tsv tests
+.PHONY: all clean run
+
+all: ashokan tests
+
+ashokan: ashokan.cpp ashokan.h | Current_Reservoir_Levels.tsv
 		g++ -o ashokan ashokan.cpp funcs.cpp
 
-tests: doctest_lab3.cpp ashokan.cpp
-		g++ -o tests doctest_lab3.cpp
-run:
+tests: doctest_lab3.cpp funcs.cpp
+		g++ -o tests $^
+
+run: ashokan
 		./ashokan
 
 clean:
-		rm ashokan
-
-doctest:
-		./doctest
+		rm -f ashokan tests
