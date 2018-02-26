@@ -21,10 +21,14 @@ int compare(string start_date, string end_date);
 int reverse_order(string low_date, string end_date);
 
 int main() {
+  cout << "~~~~East Storage Tests~~~~" << endl;
   cout << east_storage("12/12/2016") << endl;
   cout << east_storage("02/15/2018") << endl;
+  cout << "~~~~Min/Max Test~~~~" << endl;
   minmax();
+  cout << "~~~~Compare Tests~~~~" << endl;
   compare("09/13/2016", "09/17/2016");
+  cout << "~~~~Reverse Order Tests~~~~" << endl;
   reverse_order("05/29/2016", "06/02/2016");
   return 0;
 }
