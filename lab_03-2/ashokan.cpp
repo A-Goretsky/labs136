@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
+#include <sstream>
 #include "ashokan.h"
 
 using std::string;
@@ -21,10 +23,11 @@ int main() {
   cout << east_storage("12/12/2016") << endl;
   cout << east_storage("02/15/2018") << endl;
   cout << "~~~~Min/Max Test~~~~" << endl;
-  minmax();
+  cout << min_east() << endl;
+  cout << max_east() << endl;
   cout << "~~~~Compare Tests~~~~" << endl;
-  compare("09/13/2016", "09/17/2016");
+  cout << compare("09/13/2016", "09/17/2016");
   cout << "~~~~Reverse Order Tests~~~~" << endl;
-  reverse_order("05/29/2016", "06/02/2016");
+  cout << reverse_order("05/29/2016", "06/02/2016");
   return 0;
 }
