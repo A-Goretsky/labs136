@@ -1,8 +1,12 @@
-ashokan: ashokan.cpp Current_Reservoir_Levels.tsv
-		g++ -o ashokan ashokan.cpp
+.PHONY: all clean run
 
-run:
+all: main
+
+main: main.cpp main.hpp | Current_Reservoir_Levels.tsv
+		g++ -o ashokan main.cpp funcs.cpp
+
+run: ashokan
 		./ashokan
 
 clean:
-		rm ashokan
+		rm -f ashokan

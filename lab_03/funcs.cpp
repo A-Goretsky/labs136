@@ -4,6 +4,9 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
+#include <sstream>
+#include "main.hpp"
 
 using std::string;
 using std::ifstream;
@@ -14,26 +17,10 @@ using std::cerr;
 using std::vector;
 using std::find;
 
-double east_storage(string dateIn);
-int test_format(string dateIn);
-void minmax();
-int compare(string start_date, string end_date);
-int reverse_order(string low_date, string end_date);
 
-int main() {
-  cout << "~~~~East Storage Tests~~~~" << endl;
-  cout << east_storage("12/12/2016") << endl;
-  cout << east_storage("02/15/2018") << endl;
-  cout << "~~~~Min/Max Test~~~~" << endl;
-  minmax();
-  cout << "~~~~Compare Tests~~~~" << endl;
-  compare("09/13/2016", "09/17/2016");
-  cout << "~~~~Reverse Order Tests~~~~" << endl;
-  reverse_order("05/29/2016", "06/02/2016");
-  return 0;
-}
+string reverse_order(string low_date, string high_date) {
+  std::ostringstream res_string;
 
-int reverse_order(string low_date, string high_date) {
   ifstream f("Current_Reservoir_Levels.tsv");
   if (f.fail()) {
     cerr << "File cannot be opened for reading." << endl;
@@ -54,12 +41,14 @@ int reverse_order(string low_date, string high_date) {
   int low_index = std::distance(date_storage.begin(), std::find(date_storage.begin(), date_storage.end(), low_date));
 
   for (int i = high_index; i >= low_index; i--) {
-    cout << date_storage[i] << " " << westel_storage[i] << " ft" << endl;
+    res_string << date_storage[i] << " " << westel_storage[i] << " ft" << endl;
   }
-  return 0;
+  return res_string.str();
 }
 
-int compare(string start_date, string end_date) {
+string compare(string start_date, string end_date) {
+  std::ostringstream res_string;
+
   ifstream f("Current_Reservoir_Levels.tsv");
   if (f.fail()) {
     cerr << "File cannot be opened for reading." << endl;
@@ -74,34 +63,34 @@ int compare(string start_date, string end_date) {
     if (date == start_date) {
       while (date != end_date) {
         if (east_el == west_el) {
-          cout << date <<  " " << "Equal" << endl;
+          res_string << date <<  " " << "Equal" << endl;
         }
         else if (east_el < west_el) {
-          cout << date << " " << "West" << endl;
+          res_string << date << " " << "West" << endl;
         }
         else {
-          cout << date << " " << "East" << endl;
+          res_string << date << " " << "East" << endl;
         }
         f >> date >> east_st >> east_el >> west_st >> west_el;
       }
       if (date == end_date) {
         if (east_el == west_el) {
-          cout << date <<  " " << "Equal" << endl;
+          res_string << date <<  " " << "Equal" << endl;
         }
         else if (east_el < west_el) {
-          cout << date << " " << "West" << endl;
+          res_string << date << " " << "West" << endl;
         }
         else {
-          cout << date << " " << "East" << endl;
+          res_string << date << " " << "East" << endl;
         }
       }
-      return 0;
+      return res_string.str();
     }
   }
-  return 0;
+  return res_string.str();
 }
 
-void minmax() {
+double min_east() {
   ifstream f("Current_Reservoir_Levels.tsv");
   if (f.fail()) {
     cerr << "File cannot be opened for reading." << endl;
@@ -116,18 +105,38 @@ void minmax() {
   double max = 0.0;
 
   f >> date >> east_st >> east_el >> west_st >> west_el;
-  max = east_st;
   min = east_st; //Initial read/write
   while (f >> date >> east_st >> east_el >> west_st >> west_el) {
     if (east_st < min) {
       min = east_st;
     }
+  }
+  return min;
+}
+
+
+double max_east() {
+  ifstream f("Current_Reservoir_Levels.tsv");
+  if (f.fail()) {
+    cerr << "File cannot be opened for reading." << endl;
+  }
+
+  string junk;
+  getline(f, junk);
+
+  string date;
+  double east_st, east_el, west_st, west_el;
+  double min = 0.0;
+  double max = 0.0;
+
+  f >> date >> east_st >> east_el >> west_st >> west_el;
+  max = east_st; //Initial read/write
+  while (f >> date >> east_st >> east_el >> west_st >> west_el) {
     if (east_st > max) {
       max = east_st;
     }
   }
-  cout << "Minimum Storage in East basin: " << min << " billion gallons" << endl;
-  cout << "Maximum Storage in East basin: " << max << " billion gallons" << endl;
+  return max;
 }
 
 //NOT WRITTEN YET, WILL JUST RETURN TRUE.
