@@ -10,6 +10,7 @@ between limits exclusive of upper limit.
 
 #include <iostream>
 #include <string>
+#include <limits>
 
 using namespace std;
 

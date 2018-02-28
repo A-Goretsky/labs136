@@ -10,6 +10,7 @@ between 0 and 100 exclusive is inputted. Returns square.
 
 #include <iostream>
 #include <string>
+#include <limits>
 
 using namespace std;
 
