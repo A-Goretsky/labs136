@@ -20,4 +20,6 @@ int main() {
   cout << trapezoid(11, 5) << endl;
   cout << trapezoid(11, 6) << endl;
   cout << trapezoid(11, 7) << endl;
+  cout << checkerboard33(16, 11) << endl;
+  cout << checkerboard33(27, 27) << endl;
 }

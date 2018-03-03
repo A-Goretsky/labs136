@@ -20,27 +20,7 @@ string box(int width, int height) {
   return res.str();
 }
 
-string checkerboard(int width, int height) {
-  std::ostringstream res;
-  for (int x = 0; x < height; x++) {
-    for (int y = 0; y < width; y++) {
-      if (x % 2 == 0) {
-        if (y % 2 == 0) {
-          res << "*";
-        }
-        else res << " ";
-      }
-      else {
-        if (y % 2 == 0) {
-          res << " ";
-        }
-        else res << "*";
-      }
-    }
-    res << "\n";
-  }
-  return res.str();
-}
+
 
 
 string cross(int size) {
@@ -111,6 +91,40 @@ string trapezoid(int width, int height) {
   return res.str();
 }
 
+string checkerboard(int width, int height) {
+  std::ostringstream res;
+  for (int x = 0; x < height; x++) {
+    for (int y = 0; y < width; y++) {
+      if (x % 2 == 0) {
+        if (y % 2 == 0) {
+          res << "*";
+        }
+        else res << " ";
+      }
+      else {
+        if (y % 2 == 0) {
+          res << " ";
+        }
+        else res << "*";
+      }
+    }
+    res << "\n";
+  }
+  return res.str();
+}
+
 string checkerboard33(int width, int height) {
-  return "";
+  std::ostringstream res;
+  for (int x = 0; x < height; x++) {
+    for (int y = 0; y < width; y++) {
+      if ((x / 3) % 2 == (y / 3) % 2) {
+        res << "*";
+      }
+      else {
+        res << " ";
+      }
+    }
+    res << "\n";
+  }
+  return res.str();
 }
