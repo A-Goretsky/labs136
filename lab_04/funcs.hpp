@@ -14,3 +14,4 @@ string cross(int size);
 string lower(int length);
 string upper(int length);
 string trapezoid(int width, int height);
+string checkerboard33(int width, int height);
