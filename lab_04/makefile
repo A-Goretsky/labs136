@@ -5,7 +5,7 @@ STANDARD := -std=c++14 $(CXXFLAGS)
 all: main
 
 main: main.cpp funcs.cpp funcs.hpp
-	g++ $(STANDARD) main.cpp funcs.cpp -Wall -Wextra -o main
+	@$(CXX) $(STANDARD) main.cpp funcs.cpp -Wall -Wextra -o main
 run:
 	./main
 
