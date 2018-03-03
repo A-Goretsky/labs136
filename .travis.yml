@@ -24,4 +24,5 @@ before_install:
   - eval "${MATRIX_EVAL}"
 script:
   - make -C lab_04
-  - ./main -C lab_04
+  - cd lab_04
+  - ./main
