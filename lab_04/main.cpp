@@ -11,6 +11,7 @@ using std::endl;
 int main() {
   cout << "~~~~ Task A - Box ~~~~\n";
   cout << box(3, 4) << endl;
+  cout << box(7, 5) << endl;
 
   cout << "~~~~ Task B - Checkerboard ~~~~\n";
   cout << checkerboard(11, 6) << endl;
