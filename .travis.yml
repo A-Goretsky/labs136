@@ -1,8 +1,8 @@
 os: linux
 dist:
-  -trusty
+  - trusty
 language: cpp
-sudo: yes
+sudo: true
 
 matrix:
   include:
@@ -24,6 +24,7 @@ matrix:
         - MATRIX_EVAL="CC=clang && CXX=clang++"
 before_install:
   - eval "${MATRIX_EVAL}"
+
 script:
   - make -C lab_04
   - cd lab_04
