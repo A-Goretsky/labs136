@@ -2,6 +2,8 @@ os: linux
 dist:
   -trusty
 language: cpp
+sudo: yes
+
 matrix:
   include:
     - addons:
