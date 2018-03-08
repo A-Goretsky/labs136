@@ -1,4 +1,4 @@
-all: labmakes labruns
+all: labmakes
 
 labmakes:
 	#$(MAKE) -C lab_02
@@ -12,4 +12,4 @@ labruns:
 
 labclean:
 	$(MAKE) -C lab_04 clean
-	$(MAKE) -C lab_05 clean	
+	$(MAKE) -C lab_05 clean
