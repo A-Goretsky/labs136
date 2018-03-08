@@ -10,7 +10,7 @@ using std::endl;
 
 //check if n is 0 or negative;
 bool isDivisibleBy(int n, int d) {
-  if (n == 0) {
+  if (n <= 0 || d == 0) {
     return false;
   }
   return (n % d == 0);
