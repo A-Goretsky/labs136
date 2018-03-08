@@ -1,7 +1,9 @@
 os: linux
 dist:
-  -trusty
+  - trusty
 language: cpp
+sudo: true
+
 matrix:
   include:
     - addons:
@@ -22,6 +24,7 @@ matrix:
         - MATRIX_EVAL="CC=clang && CXX=clang++"
 before_install:
   - eval "${MATRIX_EVAL}"
+
 script:
   - make
   - make run
