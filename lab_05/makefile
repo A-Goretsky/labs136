@@ -10,8 +10,8 @@ main: main.cpp funcs.cpp funcs.hpp
 run:
 	./main
 
-test: tests.cpp funcs.cpp
-			g++ -o tests $^
+tests: tests.cpp funcs.cpp
+			g++ $^ -o tests -Wall -Wextra
 
 clean:
 	rm main

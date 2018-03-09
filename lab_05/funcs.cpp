@@ -10,7 +10,7 @@ using std::endl;
 
 //check if n is 0 or negative;
 bool isDivisibleBy(int n, int d) {
-  if (n <= 0 || d == 0) {
+  if (d == 0) {
     return false;
   }
   return (n % d == 0);
@@ -39,7 +39,7 @@ int nextPrime(int n) {
 int countPrimes(int a, int b) {
   int temp = 0;
   if (b < a) {
-    cout << "b is greater than a in input!! Calculating in reverse..." << endl;
+    cout << "a is greater than b in input!! Calculating in reverse..." << endl;
     temp = a;
     a = b;
     b = temp;
@@ -61,22 +61,17 @@ bool isTwinPrime(int n) {
 }
 
 int nextTwinPrime(int n) {
-  bool res = false;
-  int ctr = n;
-  while (!res) {
-    if (isTwinPrime(n)) {
-      res = true;
-    }
-    ctr++;
+  for (n += 1; !isTwinPrime(n); n++) {
+    ;
   }
-  return res;
+  return n;
 }
 
 //check if a and b are reversed in value
 int largestTwinPrime(int a, int b) {
   int temp = 0;
   if (b < a) {
-    cout << "b is greater than a in input!! Calculating in reverse..." << endl;
+    cout << "a is greater than b in input!! Calculating in reverse..." << endl;
     temp = a;
     a = b;
     b = temp;
