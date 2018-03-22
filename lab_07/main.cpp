@@ -35,4 +35,5 @@ int main() {
 
     cout << "\n~~~~ decryptVigenere ~~~~" << endl;
     cout << decryptVigenere("Jevpq, Wyvnd!", "cake") << endl;
+    cout << decryptVigenere("Dm hnpv wm Nqes uag Z ziih kc jydp hbr Apzickfby.", "round") << endl;
 }
