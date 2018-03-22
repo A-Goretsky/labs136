@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 #include "funcs.hpp"
 
 using std::string;
@@ -7,21 +8,16 @@ using std::cout;
 using std::endl;
 
 void testascii(string s) {
-    for (int i = 0; i < s.size(); i++) {
+    for (int i = 0; i < (int)s.size(); i++) {
         cout << s[i] << " " << (int)s[i] << endl;
     }
 }
 
 char shiftChar(char c, int rshift) {
-    //A = 65
-    //Z = 90
-    //a = 97
-    //z = 122
     int newr = rshift % 26;
     if (newr < 0) {
         newr += 26;
     }
-    cout << newr << endl;
     if (0 <= newr && newr <= 25) {
         if ('a' <= c && c <= 'z') {
             c = c - 'a';
@@ -44,7 +40,7 @@ char shiftChar(char c, int rshift) {
 
 string encryptCaesar(string plaintext, int rshift) {
     string res = "";
-    for (int i = 0; i < plaintext.size(); i++) {
+    for (int i = 0; i < (int)plaintext.size(); i++) {
         res += shiftChar(plaintext[i], rshift);
     }
     return res;
@@ -52,7 +48,27 @@ string encryptCaesar(string plaintext, int rshift) {
 
 string encryptVigenere(string plaintext, string keyword) {
     string res = "";
-    
+    int ctr = 0;
+    int cur_rshift = 0;
+    for (int i = 0; i < (int)plaintext.size(); i++) {
+        if (isalpha(plaintext[i]) != 0) {
+            if (ctr == (int)keyword.size())
+                ctr = 0;
+            if ('a' <= keyword[ctr] && keyword[ctr] <= 'z') {
+                //cout << keyword[i] - 97;
+                cur_rshift = (int) (keyword[ctr] - 97);
+            }
+            if ('A' <= keyword[ctr] && keyword[ctr] <= 'Z') {
+                //cout << keyword[i] - 65;
+                cur_rshift =  (int) (keyword[ctr] - 65);
+            }
+            ctr++;
+        }
+        else {
+            cur_rshift = 0;
+        }
+        res += shiftChar(plaintext[i], cur_rshift);
+    }
     return res;
 }
 
@@ -60,5 +76,31 @@ string decryptCaesar(string ciphertext, int rshift) {
     string res = "";
     rshift *= -1;
     res += encryptCaesar(ciphertext, rshift);
+    return res;
+}
+
+string decryptVigenere(string ciphertext, string keyword) {
+    string res = "";
+    int ctr = 0;
+    int cur_rshift = 0;
+    for (int i = 0; i < (int) ciphertext.size(); i++) {
+        if (isalpha(ciphertext[i]) != 0) {
+            if (ctr == (int)keyword.size())
+                ctr = 0;
+            if ('a' <= keyword[ctr] && keyword[ctr] <= 'z') {
+                //cout << keyword[i] - 97;
+                cur_rshift = (-1) * ((int) (keyword[ctr] - 97));
+            }
+            if ('A' <= keyword[ctr] && keyword[ctr] <= 'Z') {
+                //cout << keyword[i] - 65;
+                cur_rshift = (-1) * ((int) (keyword[ctr] - 65));
+            }
+            ctr++;
+        }
+        else {
+            cur_rshift = 0;
+        }
+        res += shiftChar(ciphertext[i], cur_rshift);
+    }
     return res;
 }
