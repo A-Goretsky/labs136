@@ -115,6 +115,36 @@ void pixelate(int image[MAX_H][MAX_W], int height, int width) {
     writeImage(out, height, width, "taskF");
 }
 
+void kernel(int img[MAX_H][MAX_W], int height, int width) {
+    int out[MAX_H][MAX_W];
+    int calculated = 0;
+    int ctr = 0;
+    for (int row = 0; row < height; row++) {
+        cout << ctr;
+        out[row][0] = 0;
+        out[row][width] = 0;
+        ctr++;
+
+    } 
+    for (int col = 0; col < width; col++) {
+        out[0][col] = 0;
+        out[height][col] = 0;
+    }
+    for (int row = 1; row < height; row ++) {
+        for (int col = 1; col < width; col++) {
+            calculated = (img[row+1][col-1] + (2*img[row+1][col]) + img[row+1][col+1]) - (img[row-1][col-1] + (2*img[row-1][col]) + img[row-1][col+1]);
+            if (calculated > 255)
+                calculated = 255;
+            if (calculated < 0)
+                calculated = 0;
+            out[row][col] = calculated;
+        }
+    }
+    writeImage(out, height, width, "taskG");
+}
+
+
+
 int main() {
     int img[MAX_H][MAX_W];
 	int h, w;
@@ -131,4 +161,6 @@ int main() {
     scale(img, h, w);
     readImage(img, h, w);
     pixelate(img, h, w);
+    readImage(img, h, w);
+    kernel(img, h, w);
 }
