@@ -118,13 +118,9 @@ void pixelate(int image[MAX_H][MAX_W], int height, int width) {
 void kernel(int img[MAX_H][MAX_W], int height, int width) {
     int out[MAX_H][MAX_W];
     int calculated = 0;
-    int ctr = 0;
     for (int row = 0; row < height; row++) {
-        cout << ctr;
         out[row][0] = 0;
         out[row][width] = 0;
-        ctr++;
-
     } 
     for (int col = 0; col < width; col++) {
         out[0][col] = 0;
