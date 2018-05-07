@@ -25,7 +25,7 @@ Time addMinutes(Time time0, int min) {
     int hrsAdd = (time0.m + min) / 60;
     int minAdd = (time0.m + min) % 60;
     time0.h = time0.h + hrsAdd;
-    time0.m = time0.m + minAdd;
+    time0.m = minAdd;
     return time0;
 }
 
@@ -47,19 +47,38 @@ void printTimeSlot(TimeSlot ts) {
     printTime(ts.startTime);
 }
 
+//REWRITE TO OUTPUT STRING
+std::string convGenretoSring(TimeSlot ts) {
+    std::string g;
+    switch (ts.movie.genre) {
+        case ACTION: g = "ACTION"; break;
+        case COMEDY: g = "COMEDY"; break;
+        case DRAMA: g = "DRAMA"; break;
+        case ROMANCE: g = "ROMANCE"; break;
+        case THRILLER: g = "THRILLER"; break;
+    }
+    return g;
+}
+
+
 std::string TimeSlotString(TimeSlot ts) {
-    printMovie(ts.movie);
-    cout << "[starts at ";
-    printTime(ts.startTime);
-    printTime(addMinutes(ts.startTime, ts.movie.duration));
+    std::string res = "";
+    res += ts.movie.title + " " + convGenretoSring(ts) + " (";
+    res += std::to_string(ts.movie.duration) + ") [starts at ";
+    res += std::to_string(ts.startTime.h) + ":" + std::to_string(ts.startTime.m);
+    Time endTime = addMinutes(ts.startTime, ts.movie.duration);
+    res += ", ends by " + std::to_string(endTime.h) + ":" + std::to_string(endTime.m) + "]"; 
+    return res;
 }
 
 TimeSlot scheduleAfter(TimeSlot ts, Movie nextMovie) {
-    
+    Time newTime = addMinutes(ts.startTime, ts.movie.duration);
+    TimeSlot newSlot = {nextMovie, newTime};
+    return newSlot;
 }
 
-int main() {
-    
-    cout << minutesSinceMidnight( {13, 40} ) << endl;
-    cout << minutesUntil( {10, 30}, {13, 40} ) << endl;
+bool timeOverlap(TimeSlot ts1, TimeSlot ts2) {
+    int mov1_dur = minutesSinceMidnight(addMinutes(ts1.startTime, ts1.movie.duration));
+    int mov2_start = minutesSinceMidnight(ts2.startTime);
+    return mov2_start < mov1_dur;
 }
