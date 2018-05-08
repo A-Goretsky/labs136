@@ -40,7 +40,7 @@ int main() {
     cout << pointR.x << " " << pointR.y << " " << pointR.z << endl;
     cout << pointS.x << " " << pointS.y << " " << pointS.z << endl;
 
-    /*
+    
     Coord3D *test = createCoord3D(0, 0, 100.0);
     move(test, &vel, 2.0);
     cout << test->x << " " << test->y << " " << test->z << endl;
@@ -68,6 +68,6 @@ int main() {
     }
     // remove the particle, deallocating its memory
     deleteParticle(p);
-    */
+    
     return 0;
 }
