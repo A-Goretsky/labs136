@@ -10,6 +10,7 @@ labmakes:
 	$(MAKE) -C lab_10
 	$(MAKE) -C lab_11
 	$(MAKE) -C lab_12
+	$(MAKE) -C lab_13
 
 labruns:
 	$(MAKE) -C lab_04 run
@@ -19,6 +20,7 @@ labruns:
 	$(MAKE) -C lab_10 run
 	$(MAKE) -C lab_11 run
 	$(MAKE) -C lab_12 run
+	$(MAKE) -C lab_13 run
 
 labclean:
 	$(MAKE) -C lab_04 clean
@@ -28,3 +30,4 @@ labclean:
 	$(MAKE) -C lab_10 clean
 	$(MAKE) -C lab_11 clean
 	$(MAKE) -C lab_12 clean
+	$(MAKE) -C lab_13 clean
