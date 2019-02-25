@@ -128,3 +128,20 @@ string checkerboard33(int width, int height) {
   }
   return res.str();
 }
+
+
+string checkerboard_var(int width, int height, int var) {
+  std::ostringstream res;
+  for (int x = 0; x < height; x++) {
+    for (int y = 0; y < width; y++) {
+      if ((x / var) % 2 == (y / var) % 2) {
+        res << "*";
+      }
+      else {
+        res << " ";
+      }
+    }
+    res << "\n";
+  }
+  return res.str();
+}

@@ -41,4 +41,10 @@ int main() {
   cout << "~~~~ Task G - Checkerboard 3 x 3 ~~~~\n";
   cout << checkerboard33(16, 11) << endl;
   cout << checkerboard33(27, 27) << endl;
+
+  cout << "~~~~ MY TASK - Checkerboard x by x ~~~~\n";
+  cout << checkerboard_var(16, 11, 2) << endl;
+  cout << checkerboard_var(27, 27, 3) << endl;
+  cout << checkerboard_var(16, 11, 4) << endl;
+  cout << checkerboard_var(27, 27, 5) << endl;
 }
